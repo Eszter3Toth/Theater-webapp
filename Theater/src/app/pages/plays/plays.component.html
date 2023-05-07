@@ -1,0 +1,28 @@
+<div class="main_component">
+  <h1>Here you can see the Shows.</h1>
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let show of shows">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ show.title }}
+        </mat-panel-title>
+        <mat-panel-description>
+          Date: {{ show.date | date }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <p>{{ show.description }}</p>
+      </mat-panel-description>
+      <button mat-raised-button color="primary" (click)="addTicket(show)">Reserve Tickets</button>
+      <h3>Comments</h3>
+      <div *ngIf="show.comments.length > 0">
+        <ul>
+          <li *ngFor="let comment of show.comments | slice:0:5">
+            {{ comment.date | date }} - <strong>{{ comment.user_name }}</strong>: {{ comment.message }}
+          </li>
+        </ul>
+      </div>
+      <p *ngIf="show.comments.length === 0">No comments yet.</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
